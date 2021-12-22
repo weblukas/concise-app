@@ -8,10 +8,11 @@ const Card = () => {
         <div className='slider-container'>
           {cards.map((item, index)=>{
             return(
-                <div key={item.id} className='card'>
+                <div key={item.id} >
                     <p>{item.name}</p>
                     <p>{item.cardNumber}</p>
                     <p>{item.cardHolderName}</p>
+                    
                 </div>
             )
           })}
