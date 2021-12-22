@@ -2,9 +2,9 @@ import React, { useState } from "react";
 
 const FormInput = ({ label, name, placeholder, validCard, OnChange }) => {
   const [isValid, setIsValid] = useState(true);
-  const onBlur = () => {
+  const onBlur = (name) => {
     if (validCard !== undefined) {
-      setIsValid(validCard());
+      setIsValid(validCard(name));
     }
   };
 
@@ -12,13 +12,14 @@ const FormInput = ({ label, name, placeholder, validCard, OnChange }) => {
     <div>
       <label style={styles.input}>
         {label}
-        {!isValid && <span>Invalid</span>}
+        {!isValid && <span style={{ color: "red" }}>Invalid</span>}
         <input
           type="text"
           name={name}
           placeholder={placeholder}
           onChange={(e) => OnChange(e.target.value)}
-          onBlur={onBlur}
+          onBlur={() => onBlur(name)}
+          
         />
       </label>
     </div>
