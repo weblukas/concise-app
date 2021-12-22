@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-const FormInput = ({ label, name, placeholder, validCard, OnChange }) => {
+const FormInput = ({ label, name, placeholder, valid, OnChange }) => {
   const [isValid, setIsValid] = useState(true);
-  const onBlur = (name) => {
-    if (validCard !== undefined) {
-      setIsValid(validCard(name));
+  const onBlur = () => {
+    if (valid !== undefined) {
+      setIsValid(valid());
     }
   };
 

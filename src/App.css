@@ -46,3 +46,47 @@
 .cart-icon {
   padding: 5px 20px;
 }
+
+.nav-link {
+  color: aliceblue;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 20px;
+}
+
+/* Modal  */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: grid;
+  place-items: center;
+  transition: var(--transition);
+  visibility: hidden;
+  z-index: -1;
+}
+/* OPEN/CLOSE MODAL */
+.show-modal {
+  visibility: visible;
+  z-index: 10;
+}
+.modal-container {
+  background: #92a3be;
+  width: 90vw;
+  height: 60vh;
+  place-items: center;
+  position: relative;
+}
+.close-modal-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  background: transparent;
+  border-color: transparent;
+  cursor: pointer;
+}

@@ -1,14 +1,20 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import FormInput from "./FormInput";
-import cardValidator from "card-validator";
-
 
 
 const initialValue = {
-  name: "",
+  cardHolder: "",
+  cardNumber: "",
+  expiredDate: "",
+  ccv: ""
 };
+// próbowałem użyć card validator, ale nie działał, dlatego użyłem tego 
+// chociaż to zupełnie nie profesjonalne
 
 const nameValidation = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/;
+const ccvValidation = /^[0-9]{3, 4}$/;
+const cardNumberValidation = /^4[0-9]{12}(?:[0-9]{3})?$/;
+
 
 const Form = () => {
   const formRef = useRef(initialValue);
@@ -17,55 +23,61 @@ const Form = () => {
     formRef.current[fieldName] = value;
   };
 
-
+  // validators 
   const validators = {
-    name: (name) => nameValidation.test(formRef.current[name]), 
-    cardNumberValidation: (name) => {
-      console.log(name);
-      console.log(formRef.current);
-
-      console.log(formRef.current[name]);
-
-      return cardValidator.number(formRef.current[name]).isPotentiallyValid;
-    },
-    expiredDate: (name) => {
-      console.log(name);
-      console.log(formRef.current);
-
-      console.log(formRef.current[name]);
-      console.log(
-        cardValidator.expirationDate(formRef.current[name]).isPotentiallyValid
-      );
-
-      return cardValidator.expirationDate(formRef.current[name])
-        .isPotentiallyValid;
-    },
+    name: () => nameValidation.test(formRef.current.name),
+    cardNumber: () => cardNumberValidation.test(formRef.current.cardNumber),
+    ccv: () => ccvValidation.test(formRef.current.ccv)
   };
 
-  // if()
+  // handle form submit
+
+  const [cardHolder, setCardHolder] = useState('')
+  const [cardNr, setCardNr] = useState('')
+  const [expDate, setExpDate] = useState('')
+  const [ccvNr, setCcvNr] = useState('')
+
+const handleSubmit = (e)=>{
+  e.preventDefault()
+  setCardHolder(formRef.current.cardHolder)
+  setCardNr(formRef.current.cardNumber)
+  setExpDate(formRef.current.expiredDate)
+  setCcvNr(formRef.current.ccv)
+  
+}
+
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <FormInput
-        name="card-holder"
+        name="cardHolder"
         placeholder="card holder name"
         label="card holder name"
-        OnChange={(value) => fieldUpdate("name", value)}
-        validCard={validators.name}
+        OnChange={(value) => fieldUpdate("cardHolder", value)}
+        valid={validators.name}
       />
       <FormInput
-        name="card-number"
+        name="cardNumber"
         placeholder="card number"
         label="card number"
-        OnChange={(value) => fieldUpdate("card-number", value)}
-        validCard={(value) => validators.cardNumberValidation(value)}
+        OnChange={(value) => fieldUpdate("cardNumber", value)}
+        valid={validators.cardNumber}
       />
       <FormInput
         name="expiredDate"
         placeholder="expiredDate"
         label="expiredDate (mm/yy)"
         OnChange={(value) => fieldUpdate("expiredDate", value)}
-        validCard={validators.expiredDate}
+        valid={validators.expiredDate}
       />
+      <FormInput
+        name="ccv"
+        placeholder="CCV"
+        label="CCV "
+        OnChange={(value) => fieldUpdate("ccv", value)}
+        valid={validators.ccv}
+      />
+      <button type="submit" >Add card</button>
     </form>
   );
 };

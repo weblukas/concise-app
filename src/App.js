@@ -11,9 +11,9 @@ function App() {
     <div className="App">
     
       <Cart />
-      <Link to="/payment-page">Payment Page</Link>
-      <CardSlider />
-      <Form />
+      <Link to="/payment-page" className="nav-link">Payment Page</Link>
+      <Link to="/" className="nav-link">Home</Link>
+     
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/payment-page" element={<PaymentPage />} />
