@@ -1,34 +1,48 @@
 .App {
   text-align: center;
-}
-
-.App-header {
-  /* background-color: #282c34; */
   background-color: #6c7789;
   min-height: 100vh;
+  color: white;
+  font-size: calc(10px + 2vmin);
+}
+/* 
+.App-header {
+ 
+  
+
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+  
+  
+  
+} */
 .card-slider {
   width: 50vw;
   margin: 0 auto;
 }
 .card {
   width: 100px;
-  height: 200px;
+  height: 100%;
   background-color: #0f1724;
   border: 1px solid rgb(250, 252, 250);
 }
 
 .sliderContainer {
   margin: 0 auto;
-  margin-top: 4rem;
   width: 60vw;
   height: 450px;
   text-align: center;
  
  
+}
+
+.cart-container {
+  display: flex;
+  height: 100px;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.cart-icon {
+  padding: 5px 20px;
 }

@@ -13,6 +13,7 @@ const nameValidation = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}
 const Form = () => {
   const formRef = useRef(initialValue);
 
+  
  
   const fieldUpdate = (fieldName, value) => {
     formRef.current[fieldName] = value;

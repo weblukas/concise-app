@@ -1,5 +1,4 @@
 import React from "react";
-import Card from "./Card";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
@@ -9,7 +8,7 @@ export const cards = [
     id: 1,
     name: "card1",
     cardNumber: 123456789,
-    cardHolderName: "Jan Kowalski",
+    cardHolderName: "John Doe",
   },
   {
     id: 2,
@@ -17,12 +16,7 @@ export const cards = [
     cardNumber: 4444444789,
     cardHolderName: "John Doe",
   },
-  {
-    id: 3,
-    name: "card3",
-    cardNumber: 55555555555,
-    cardHolderName: "Robert Doe",
-  },
+ 
 ];
 
 const CardSlider = () => {
