@@ -19,7 +19,6 @@ const FormInput = ({ label, name, placeholder, valid, OnChange }) => {
           placeholder={placeholder}
           onChange={(e) => OnChange(e.target.value)}
           onBlur={() => onBlur(name)}
-          
         />
       </label>
     </div>

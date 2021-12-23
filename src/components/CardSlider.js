@@ -16,7 +16,6 @@ export const cards = [
     cardNumber: 4444444789,
     cardHolderName: "John Doe",
   },
- 
 ];
 
 const CardSlider = () => {
@@ -25,7 +24,7 @@ const CardSlider = () => {
     infinite: true,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1
+    slidesToScroll: 1,
   };
 
   return (
