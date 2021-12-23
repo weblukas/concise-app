@@ -9,7 +9,7 @@ const PaymentPage = () => {
     <div>
       <h1>Payment page</h1>
       <CardSlider />
-      <button onClick={openModal} style={{ margin: "4rem", padding: "1rem" }}>
+      <button onClick={openModal} style={{ margin: "4rem", padding: "1rem", cursor: 'pointer' }}>
         Add new credit card
       </button>
 

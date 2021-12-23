@@ -42,8 +42,12 @@
   text-decoration: none;
   cursor: pointer;
   padding: 20px;
+
 }
 
+.nav-link:hover {
+  color: #0f1724;
+}
 /* Modal  */
 
 .modal-overlay {

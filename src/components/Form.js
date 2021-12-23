@@ -5,15 +5,16 @@ const initialValue = {
   cardHolder: "",
   cardNumber: "",
   expiredDate: "",
-  ccv: "",
+  cvv: "",
 };
 // próbowałem użyć card validator, ale nie zadziałał, dlatego użyłem regex
 // do numeru karty niewystarczające ale do reszty powinny być ok
 // jednak coś nie działa
 
-const nameValidation = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/;
-const ccvValidation = /^[0-9]{3, 4}$/;
+const nameValidation = /^([A-Za-z]{3, })\s([A-Za-z]{3, })$/;
+const cvvValidation = /^[0-9]{3, 4}$/;
 const cardNumberValidation = /^4[0-9]{12}(?:[0-9]{3})?$/;
+const expiredDateValidation = /^(0[1-9]|1[0-2])\/?([0-9]{2})$/;
 
 const Form = () => {
   const formRef = useRef(initialValue);
@@ -26,7 +27,8 @@ const Form = () => {
   const validators = {
     name: () => nameValidation.test(formRef.current.name),
     cardNumber: () => cardNumberValidation.test(formRef.current.cardNumber),
-    ccv: () => ccvValidation.test(formRef.current.ccv),
+    expiredDate: () => expiredDateValidation.test(formRef.current.expiredDate),
+    cvv: () => cvvValidation.test(formRef.current.cvv),
   };
 
   // handle form submit
@@ -34,23 +36,23 @@ const Form = () => {
   const [cardHolder, setCardHolder] = useState("");
   const [cardNr, setCardNr] = useState("");
   const [expDate, setExpDate] = useState("");
-  const [ccvNr, setCcvNr] = useState("");
+  const [cvvNr, setCvvNr] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setCardHolder(formRef.current.cardHolder);
     setCardNr(formRef.current.cardNumber);
     setExpDate(formRef.current.expiredDate);
-    setCcvNr(formRef.current.ccv);
+    setCvvNr(formRef.current.cvv);
 
-    // const newCard = {
-    //   cardHolder: cardHolder,
-    //   cardNr: cardNr,
-    //   expDate: expDate,
-    //   ccvNr: ccvNr
-    // }
+    const newCard = {
+      cardHolder: cardHolder,
+      cardNr: cardNr,
+      expDate: expDate,
+      ccvNr: cvvNr,
+    };
 
-    // console.log(newCard);
+    console.log(newCard);
   };
 
   return (
@@ -77,11 +79,11 @@ const Form = () => {
         valid={validators.expiredDate}
       />
       <FormInput
-        name="ccv"
-        placeholder="CCV"
-        label="ccv"
-        OnChange={(value) => fieldUpdate("ccv", value)}
-        valid={validators.ccv}
+        name="cvv"
+        placeholder="cvv"
+        label="cvv"
+        OnChange={(value) => fieldUpdate("cvv", value)}
+        valid={validators.cvv}
       />
       <button type="submit">Add card</button>
     </form>
